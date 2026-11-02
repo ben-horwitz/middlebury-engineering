@@ -48,7 +48,7 @@ The contact form in `contact.html` is sent through [FormSubmit](https://formsubm
 Each page has its own `<title>`, meta description, canonical link, Open Graph/Twitter tags for link previews, and Organization schema (JSON-LD) in the `<head>`. `sitemap.xml` lists the public pages and `robots.txt` points to it. The thank-you, 404 and redirect pages are marked `noindex`.
 
 - **New page:** give it a unique title and description, then add it to `sitemap.xml`.
-- **Moving to a custom domain:** find and replace `https://ben-horwitz.github.io/middlebury-engineering/` with the new address (for example `https://www.middleburyengineering.com/`) in every file. That updates canonicals, share images, schema, the sitemap, robots.txt and the form's thank-you link. Crawlers only read `robots.txt` at the root of a domain, so it starts working once the site is on its own domain.
+- **Moving to a custom domain:** find and replace `https://middleburyengineering.github.io/` with the new address (for example `https://www.middleburyengineering.com/`) in every file. That updates canonicals, share images, schema, the sitemap, robots.txt and the form's thank-you link. Crawlers only read `robots.txt` at the root of a domain, so it starts working once the site is on its own domain.
 - **Get indexed:** add the site in [Google Search Console](https://search.google.com/search-console) and submit `sitemap.xml`.
 
 ## Hosting and the domain
