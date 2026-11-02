@@ -1,6 +1,8 @@
 # Middlebury Engineering Society website
 
-The club website, rebuilt from the old Wix site as plain HTML/CSS/JS and hosted free on GitHub Pages. No build step and no frameworks: edit a file, commit, and the site updates.
+Login with contact@middlebury-engineering.com
+
+Email is forwarded via cloudfare registrar, and forwarded to whoever is under email routing. Reach out to dhoughton@middlebury.edu if this email needs to be changed.
 
 ## Pages
 
