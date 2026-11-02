@@ -41,20 +41,28 @@ The contact form in `contact.html` is sent through [FormSubmit](https://formsubm
 - **First-time activation:** the very first submission triggers a confirmation email to benhorwitz05@gmail.com. Click the link in it, and every message after that is delivered.
 - **Hide the address:** after activating, FormSubmit emails a random alias. Replace `benhorwitz05@gmail.com` in the form's `action` URL with that alias so the address isn't visible in the page source.
 - **Change recipients:** edit the `action` URL (main recipient) and the `_cc` value (comma-separated copies). A new main recipient has to activate again.
-- **Custom domain:** the hidden `_next` field sends people to `thanks.html` on the github.io address. Update it if the site moves to a custom domain.
+- **Thank-you page:** the hidden `_next` field sends people to `https://www.middleburyengineering.com/thanks.html`. Update it if the domain ever changes.
 
 ## SEO
 
 Each page has its own `<title>`, meta description, canonical link, Open Graph/Twitter tags for link previews, and Organization schema (JSON-LD) in the `<head>`. `sitemap.xml` lists the public pages and `robots.txt` points to it. The thank-you, 404 and redirect pages are marked `noindex`.
 
 - **New page:** give it a unique title and description, then add it to `sitemap.xml`.
-- **Moving to a custom domain:** find and replace `https://middleburyengineering.github.io/` with the new address (for example `https://www.middleburyengineering.com/`) in every file. That updates canonicals, share images, schema, the sitemap, robots.txt and the form's thank-you link. Crawlers only read `robots.txt` at the root of a domain, so it starts working once the site is on its own domain.
+- **Moving to a custom domain:** find and replace `https://www.middleburyengineering.com/` with the new address (for example `https://www.middleburyengineering.com/`) in every file. That updates canonicals, share images, schema, the sitemap, robots.txt and the form's thank-you link. Crawlers only read `robots.txt` at the root of a domain, so it starts working once the site is on its own domain.
 - **Get indexed:** add the site in [Google Search Console](https://search.google.com/search-console) and submit `sitemap.xml`.
 
 ## Hosting and the domain
 
-The site is served by GitHub Pages from the `main` branch (Settings → Pages). To move `middleburyengineering.com` off Wix:
+The site is hosted by GitHub Pages from the `main` branch of `middleburyengineering/middlebury-engineering` (Settings → Pages), at **www.middleburyengineering.com**. The `CNAME` file in this repo tells GitHub Pages the domain; don't delete it.
 
-1. In Settings → Pages → Custom domain, enter `www.middleburyengineering.com` and save (this creates a `CNAME` file).
-2. At the domain registrar, point `www` with a CNAME record to `<github-username>.github.io`, and point the apex domain with A records to `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`.
-3. Once DNS has propagated, tick "Enforce HTTPS".
+The domain is managed in Cloudflare, with these DNS records (all set to **DNS only**, grey cloud):
+
+| Type | Name | Content |
+| --- | --- | --- |
+| A | `@` | `185.199.108.153` |
+| A | `@` | `185.199.109.153` |
+| A | `@` | `185.199.110.153` |
+| A | `@` | `185.199.111.153` |
+| CNAME | `www` | `middleburyengineering.github.io` |
+
+`middleburyengineering.com` without `www` redirects to `www` automatically. HTTPS is handled by GitHub (Settings → Pages → Enforce HTTPS).
