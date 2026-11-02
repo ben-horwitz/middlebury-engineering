@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ben-horwitz.github.io/middlebury-engineering/sitemap.xml
