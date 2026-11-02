@@ -23,7 +23,7 @@ The folders named like `about-1-1/` and the stub files `projects.html`, `events.
 
 - **Text:** open the page's `.html` file and change the text between the tags.
 - **Board members:** in `about.html`, edit the `<div class="person">` blocks under "Meet the Board".
-- **Navigation:** the header and footer are repeated in every page. If you add a page, add its link to the header in each file.
+- **Navigation:** the header menus and footer are repeated in every page. If you add a page, add its link to the matching dropdown (`.dropdown-menu`) and the footer in each file.
 - **Photos:** drop a `.jpg` in `images/` (ideally under 1600px wide) and reference it as `images/your-photo.jpg`.
 
 ## Preview locally
