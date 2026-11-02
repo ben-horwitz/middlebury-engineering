@@ -10,7 +10,7 @@ The club website, rebuilt from the old Wix site as plain HTML/CSS/JS and hosted 
 | `about.html` | About, story, board |
 | `dual-degree.html` | Dartmouth dual degree and the yearly panel |
 | `bridge-competition.html` | Bridge building competition |
-| `workshops.html` | Maker Space workshops |
+| `workshops.html` | Makerspace workshops |
 | `outreach.html` | Community outreach |
 | `contact.html` | Contact form |
 | `thanks.html` | Shown after the contact form is sent |
