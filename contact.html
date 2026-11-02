@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact | Middlebury Engineering Society</title>
-  <meta name="description" content="Contact the Middlebury Engineering Society by email, GroupMe, or our contact form.">
+  <meta name="description" content="Contact the Middlebury Engineering Society.">
   <link rel="icon" href="images/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,19 +22,11 @@
       <nav class="nav" aria-label="Main">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
+        <a href="dual-degree.html">Dual Degree</a>
+        <a href="bridge-competition.html">Bridge Competition</a>
         <a href="workshops.html">Workshops</a>
-        <a href="projects.html">Projects</a>
-        <div class="dropdown">
-          <button aria-expanded="false">More &#9662;</button>
-          <div class="dropdown-menu">
-            <a href="soapbox-cars.html">Soapbox Cars</a>
-            <a href="see-the-stars.html">See the Stars</a>
-            <a href="outreach.html">Community Outreach</a>
-            <a href="events.html">Events</a>
-            <a href="news.html">News &amp; Blog</a>
-            <a href="contact.html" aria-current="page">Contact</a>
-          </div>
-        </div>
+        <a href="outreach.html">Outreach</a>
+        <a href="contact.html" aria-current="page">Contact</a>
       </nav>
     </div>
   </header>
@@ -43,30 +35,34 @@
     <section class="page-hero" style="background-image:url('images/hero-garage.jpg')">
       <div class="container">
         <div class="eyebrow" style="color:var(--accent)">Let's chat</div>
-        <h1>Contact</h1>
-        <p>Interested in joining? Have a passion project or a partnership in mind? Just want to learn more? Email us, join our GroupMe, or send a message below.</p>
+        <h1>Reach Out</h1>
+        <p>Interested in joining, the bridge competition, or the dual degree? Want to partner with us on a workshop? Send us a message and we'll get back to you.</p>
       </div>
     </section>
 
     <section>
       <div class="container split" style="align-items:start">
+        <form class="contact" action="https://formsubmit.co/benhorwitz05@gmail.com" method="POST">
+          <input type="hidden" name="_cc" value="dhoughton@middlebury.edu">
+          <input type="hidden" name="_subject" value="MES website: New message">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="https://ben-horwitz.github.io/middlebury-engineering/thanks.html">
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+          <div class="row">
+            <div><label for="first">First name</label><input id="first" name="First name" required></div>
+            <div><label for="last">Last name</label><input id="last" name="Last name"></div>
+          </div>
+          <div><label for="email">Email</label><input id="email" name="email" type="email" required></div>
+          <div><label for="message">Message</label><textarea id="message" name="Message" required></textarea></div>
+          <div><button class="btn btn-dark" type="submit">Send</button></div>
+        </form>
         <div class="contact-box">
-          <h2>Get in touch</h2>
+          <h2>Other ways to reach us</h2>
           <p><strong style="color:#fff">Email</strong><br><a href="mailto:engineering@middlebury.edu">engineering@middlebury.edu</a></p>
           <p><strong style="color:#fff">GroupMe</strong><br><a href="https://groupme.com/join_group/103342575/rlIjGWXM" target="_blank" rel="noopener">Join the group</a>. All meetings and events are posted here.</p>
           <p><strong style="color:#fff">Instagram</strong><br><a href="https://www.instagram.com/middformulahybrid/" target="_blank" rel="noopener">@middformulahybrid</a></p>
           <p style="margin:0"><strong style="color:#fff">Find us</strong><br>Maker Space, Johnson Memorial Center<br>72 Chateau Road, Middlebury, VT 05753</p>
         </div>
-        <form class="contact" data-subject="Website message">
-          <div class="row">
-            <div><label for="first">First name</label><input id="first" name="first" required></div>
-            <div><label for="last">Last name</label><input id="last" name="last"></div>
-          </div>
-          <div><label for="email">Email</label><input id="email" name="email" type="email" required></div>
-          <div><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
-          <div><button class="btn btn-dark" type="submit">Send</button></div>
-          <p class="form-note">Submitting opens a pre-filled email to engineering@middlebury.edu.</p>
-        </form>
       </div>
     </section>
   </main>
@@ -83,15 +79,16 @@
           <h4>Explore</h4>
           <ul>
             <li><a href="about.html">About</a></li>
+            <li><a href="dual-degree.html">Dual Degree</a></li>
+            <li><a href="bridge-competition.html">Bridge Competition</a></li>
             <li><a href="workshops.html">Workshops</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="outreach.html">Community Outreach</a></li>
-            <li><a href="events.html">Events</a></li>
+            <li><a href="outreach.html">Outreach</a></li>
           </ul>
         </div>
         <div>
           <h4>Connect</h4>
           <ul>
+            <li><a href="contact.html">Contact us</a></li>
             <li><a href="mailto:engineering@middlebury.edu">engineering@middlebury.edu</a></li>
             <li><a href="https://groupme.com/join_group/103342575/rlIjGWXM" target="_blank" rel="noopener">Join our GroupMe</a></li>
             <li><a href="https://www.instagram.com/middformulahybrid/" target="_blank" rel="noopener">Instagram</a></li>

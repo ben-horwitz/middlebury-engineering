@@ -76,7 +76,7 @@ p { margin: 0 0 1em; }
 
 .nav-toggle { display: none; background: none; border: 0; color: #fff; font-size: 1.7rem; cursor: pointer; padding: 4px 8px; }
 
-@media (max-width: 860px) {
+@media (max-width: 1060px) {
   .nav-toggle { display: block; }
   .nav {
     position: absolute; left: 0; right: 0; top: 70px;
