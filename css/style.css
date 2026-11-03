@@ -405,7 +405,6 @@ main > section.marquee + section { padding-top: 70px; }
 }
 .marquee-track span { display: inline-flex; align-items: center; }
 .marquee-track span::after { content: "✦"; margin: 0 26px; font-size: .8em; opacity: .7; }
-.marquee:hover .marquee-track { animation-play-state: paused; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 
 /* ---------- Interactive truss ---------- */
