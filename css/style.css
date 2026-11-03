@@ -154,8 +154,12 @@ strong { font-weight: 600; }
 }
 /* heroes without a photo: solid navy */
 .page-hero:not([style*="background-image"])::before { background: var(--ink); }
-.hero { min-height: min(92vh, 860px); display: flex; align-items: center; }
-.hero .container { padding-top: 110px; padding-bottom: calc(110px + var(--curve)); width: 100%; }
+.hero {
+  /* fill the first screen minus the header (74px) and the tool strip (~64px), so the strip shows on load */
+  min-height: calc(100vh - 138px); min-height: calc(100svh - 138px);
+  display: flex; align-items: center;
+}
+.hero .container { padding-top: 56px; padding-bottom: 56px; width: 100%; }
 .page-hero .container { padding-top: 120px; padding-bottom: calc(90px + var(--curve)); }
 .hero h1, .page-hero h1 { color: #fff; max-width: 15ch; }
 .page-hero h1 { font-size: clamp(2.6rem, 6.4vw, 4.8rem); }
@@ -466,17 +470,7 @@ main > section.marquee + section { padding-top: 70px; }
 .avatar img { width: 100%; height: 100%; object-fit: cover; }
 
 /* ---------- 3D bridge model ---------- */
-.bridge-float {
-  position: absolute; right: -3%; top: 47%; width: min(50vw, 680px); aspect-ratio: 4 / 3;
-  transform: translateY(-50%); z-index: 1; pointer-events: none;
-}
-.bridge-float canvas, .bridge-viewer canvas { display: block; width: 100% !important; height: 100% !important; }
-.hero .container { position: relative; z-index: 2; }
-@media (max-width: 900px) {
-  .hero { flex-direction: column; align-items: stretch; }
-  .hero .container { padding-bottom: 0; }
-  .bridge-float { position: relative; right: auto; top: auto; transform: none; width: 100%; aspect-ratio: 16 / 10; margin-bottom: var(--curve); }
-}
+.bridge-viewer canvas { display: block; width: 100% !important; height: 100% !important; }
 .bridge-viewer {
   position: relative; aspect-ratio: 4 / 3; border-radius: 28px 28px 28px 6px;
   background: var(--white);
@@ -504,3 +498,47 @@ main > section.marquee + section { padding-top: 70px; }
 }
 /* Technical drawings show in full instead of being cropped */
 .split > img.rounded { object-fit: contain; background: #fff; padding: 10px; }
+
+/* Home header fits the first screen so the tool strip is visible on load */
+.hero .container { padding-top: 40px; padding-bottom: 40px; }
+.hero h1 { max-width: 13ch; font-size: clamp(2.5rem, 6.2vw, 5rem); }
+@media (min-width: 900px) { .hero h1 { max-width: 16ch; } }
+@media (max-width: 600px) {
+  .hero .container { padding-top: 28px; padding-bottom: 28px; }
+  .hero .tagline { font-size: .72rem; margin-bottom: 12px; }
+  .hero h1 { font-size: 2.45rem; margin-bottom: .35em; }
+  .hero p.lead { font-size: 1.02rem; margin-bottom: 0; }
+  .hero .btn-row { margin-top: 18px; gap: 10px; flex-wrap: nowrap; }
+  .hero .btn { padding: 12px 18px; font-size: .92rem; }
+}
+
+/* Short laptop screens: scale the Home title with screen height too */
+.hero h1 { font-size: clamp(2.4rem, min(6.2vw, 8.5vh), 5rem); }
+@media (max-height: 760px) and (min-width: 601px) {
+  .hero .container { padding-top: 24px; padding-bottom: 24px; }
+  .hero p.lead { margin-bottom: 0; }
+  .hero .btn-row { margin-top: 18px; }
+}
+
+/* ---------- Flat, technical cards (no bubbles) ---------- */
+.grid-4 > :nth-child(even), .grid-3 > :nth-child(2) { margin-top: 0 !important; }   /* no stagger */
+.card {
+  border-radius: 4px; box-shadow: none; border: 1px solid var(--line); background: var(--white);
+}
+.section-soft .card { background: var(--paper); }
+a.card:hover { box-shadow: none; border-color: var(--ink); transform: translateY(-3px); }
+.card img { border-radius: 0; }
+/* text-only cards become open columns under a rule, like a spec sheet */
+.card:not(:has(img)) {
+  background: transparent !important; border: 0; border-top: 2px solid var(--ink); border-radius: 0;
+}
+.card:not(:has(img)) .card-body { padding: 18px 4px 8px 0; }
+.section-dark .card:not(:has(img)) { border-top-color: rgba(255,255,255,.5); }
+.section-dark .card { background: transparent; }
+a.card:not(:has(img)):hover { transform: none; border-top-color: var(--accent); }
+.facts div { border-radius: 2px; background: transparent !important; border: 0; border-left: 2px solid var(--ink); padding: 4px 0 4px 16px; }
+.roles div { border-radius: 2px; }
+.callout, .contact-box { border-radius: 4px; }
+.split > img, .split > video, .bridge-viewer { border-radius: 4px; }
+.gallery img { border-radius: 4px; }
+.badge { border-radius: 2px; }
