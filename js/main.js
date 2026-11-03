@@ -87,19 +87,6 @@ if (!reduceMotion && 'IntersectionObserver' in window) {
   });
 }
 
-// Cards tilt slightly toward the cursor
-if (!reduceMotion && window.matchMedia('(hover: hover)').matches) {
-  document.querySelectorAll('a.card').forEach((card) => {
-    card.addEventListener('pointermove', (e) => {
-      const r = card.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - 0.5;
-      const y = (e.clientY - r.top) / r.height - 0.5;
-      card.style.transform = `perspective(900px) rotateX(${-y * 5}deg) rotateY(${x * 6}deg) translateY(-4px)`;
-    });
-    card.addEventListener('pointerleave', () => { card.style.transform = ''; });
-  });
-}
-
 // Live truss: a Warren truss solved by the method of joints as a load moves across the deck.
 // Members are coloured by tension/compression and drawn thicker the more force they carry.
 document.querySelectorAll('[data-truss]').forEach((box) => {
