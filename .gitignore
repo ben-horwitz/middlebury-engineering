@@ -1,1 +1,15 @@
 .DS_Store
+
+# Original camera files dropped in the main folder (web-sized copies go in images/)
+/*.JPG
+/*.jpg
+/*.jpeg
+/*.JPEG
+/*.HEIC
+/*.heic
+/*.MOV
+/*.mov
+/*.MP4
+/*.mp4
+/*.PNG
+/*.png
