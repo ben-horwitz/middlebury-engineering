@@ -541,3 +541,18 @@ a.card:not(:has(img)):hover { transform: none; border-top-color: var(--accent); 
 .split > img, .split > video, .bridge-viewer { border-radius: 4px; }
 .gallery img { border-radius: 4px; }
 .badge { border-radius: 2px; }
+
+/* ---------- Tool strip: quiet ticker ---------- */
+.marquee {
+  background: var(--paper); color: var(--muted); box-shadow: none;
+  border-bottom: 1px solid var(--line);
+}
+.marquee-track {
+  padding: 18px 0; animation-duration: 70s;
+  font-family: var(--mono); font-weight: 400; font-stretch: 100%;
+  font-size: .82rem; letter-spacing: .14em;
+}
+.marquee-track span::after { content: "•"; color: var(--accent); margin: 0 28px; font-size: 1em; opacity: 1; }
+/* the header flows into the ticker with the same wave edge as other sections */
+main > section.marquee { overflow: visible; overflow-x: clip; --sec: var(--paper); }
+main > section.marquee::before { display: block; }
