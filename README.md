@@ -38,11 +38,11 @@ Then open http://localhost:8000.
 
 ## Contact forms
 
-The contact form in `contact.html` is sent through [FormSubmit](https://formsubmit.co), a free service that needs no account. Each message is emailed to benhorwitz05@gmail.com, with a copy to dhoughton@middlebury.edu (the hidden `_cc` field).
+The contact form in `contact.html` is sent through [FormSubmit](https://formsubmit.co), a free service that needs no account. Each message is emailed to contact@middlebury-engineering.com, which Cloudflare Email Routing forwards to the current club inbox.
 
-- **First-time activation:** the very first submission triggers a confirmation email to benhorwitz05@gmail.com. Click the link in it, and every message after that is delivered.
-- **Hide the address:** after activating, FormSubmit emails a random alias. Replace `benhorwitz05@gmail.com` in the form's `action` URL with that alias so the address isn't visible in the page source.
-- **Change recipients:** edit the `action` URL (main recipient) and the `_cc` value (comma-separated copies). A new main recipient has to activate again.
+- **First-time activation:** the very first submission triggers a confirmation email to contact@middlebury-engineering.com. Click the link in it, and every message after that is delivered.
+- **Hide the address:** after activating, FormSubmit emails a random alias. Replace `contact@middlebury-engineering.com` in the form's `action` URL with that alias so the address isn't visible in the page source.
+- **Change who receives messages:** change the forwarding destination in Cloudflare Email Routing; the form itself doesn't need to change.
 - **Thank-you page:** the hidden `_next` field sends people to `https://www.middlebury-engineering.com/thanks.html`. Update it if the domain ever changes.
 
 ## SEO
