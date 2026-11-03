@@ -556,3 +556,6 @@ a.card:not(:has(img)):hover { transform: none; border-top-color: var(--accent); 
 /* the header flows into the ticker with the same wave edge as other sections */
 main > section.marquee { overflow: visible; overflow-x: clip; --sec: var(--paper); }
 main > section.marquee::before { display: block; }
+.photo-stack { display: grid; gap: 18px; }
+.photo-stack > img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center 38%; border-radius: 4px; box-shadow: 22px 22px 0 -2px var(--ink); }
+@media (max-width: 900px) { .photo-stack > img { box-shadow: 12px 12px 0 -2px var(--ink); } }
