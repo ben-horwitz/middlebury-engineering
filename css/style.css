@@ -509,3 +509,15 @@ main > section.marquee + section { padding-top: 70px; }
 }
 .bridge-viewer:not(.live) .bridge-viewer-hint { display: none; }
 @media (max-width: 900px) { .bridge-viewer { box-shadow: 12px 12px 0 -2px var(--accent); } }
+
+/* ---------- Polish ---------- */
+/* Footer sits a shade deeper than navy sections so its curved edge always shows */
+.site-footer { --sec: #08121e; background: #08121e; }
+/* Text-only cards get a small mono index number */
+.grid { counter-reset: card; }
+.card:not(:has(img)) .card-body::before {
+  counter-increment: card; content: counter(card, decimal-leading-zero);
+  display: block; font-family: var(--mono); font-size: .78rem; letter-spacing: .12em; color: #d1531a; margin-bottom: 8px;
+}
+/* Technical drawings show in full instead of being cropped */
+.split > img.rounded { object-fit: contain; background: #fff; padding: 10px; }
