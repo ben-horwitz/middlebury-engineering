@@ -11,12 +11,12 @@
   <meta property="og:title" content="Bridge Building Competition | Middlebury Engineering Society">
   <meta property="og:description" content="The Middlebury Engineering Society bridge competition teaches Middlebury College engineering basics: Onshape CAD, laser cutting, and stress and strain.">
   <meta property="og:url" content="https://www.middlebury-engineering.com/bridge-competition.html">
-  <meta property="og:image" content="https://www.middlebury-engineering.com/images/bridge-onshape.jpg">
+  <meta property="og:image" content="https://www.middlebury-engineering.com/images/bridge-new-truss.jpg">
   <meta property="og:image:alt" content="Middlebury Engineering Society">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Bridge Building Competition | Middlebury Engineering Society">
   <meta name="twitter:description" content="The Middlebury Engineering Society bridge competition teaches Middlebury College engineering basics: Onshape CAD, laser cutting, and stress and strain.">
-  <meta name="twitter:image" content="https://www.middlebury-engineering.com/images/bridge-onshape.jpg">
+  <meta name="twitter:image" content="https://www.middlebury-engineering.com/images/bridge-new-truss.jpg">
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -52,8 +52,8 @@
   <link rel="icon" href="images/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=3">
 </head>
 <body>
   <header class="site-header">
@@ -88,11 +88,19 @@
   </header>
 
   <main>
-    <section class="page-hero" style="background-image:url('images/workshop-2.jpg')">
-      <div class="container">
+    <section class="page-hero">
+      <div class="container hero-split">
+        <div>
         <div class="eyebrow" style="color:var(--accent)">Design &middot; Build &middot; Crush</div>
         <h1>Bridge Building Competition</h1>
         <p>By the end of the semester, everyone will be able to design and fabricate a custom wooden truss bridge, then we load them until they break.</p>
+        </div>
+        <div class="truss-demo" data-truss>
+          <div class="truss-hint">Live truss &middot; move to load it</div>
+          <svg viewBox="0 20 640 240" role="img" aria-label="Interactive Warren truss showing tension and compression as a load moves across it"></svg>
+          <div class="truss-legend"><span><i style="background:#5aa9ff"></i>Tension</span><span><i style="background:#ff6a2b"></i>Compression</span><span>Line width = force</span></div>
+          <div class="truss-readout" aria-live="polite"></div>
+        </div>
       </div>
     </section>
 
@@ -109,7 +117,7 @@
             <div><strong>Experience</strong>None needed</div>
           </div>
         </div>
-        <img src="images/bridge-onshape.jpg" alt="Onshape model of the MES starter truss bridge" style="aspect-ratio:auto;object-fit:contain;background:#fff;border:1px solid var(--line)">
+        <img src="images/bridge-new-truss.jpg" alt="Onshape model of the MES plywood truss bridge" style="aspect-ratio:auto;object-fit:contain;background:#fff;border:1px solid var(--line)">
       </div>
     </section>
 
@@ -199,6 +207,6 @@
       </div>
     </div>
   </footer>
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=3"></script>
 </body>
 </html>
