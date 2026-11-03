@@ -238,3 +238,118 @@ document.querySelectorAll('[data-truss]').forEach((box) => {
   if (!reduceMotion) requestAnimationFrame(frame);
   else box.addEventListener('pointermove', () => draw(target));
 });
+
+// 3D bridge: the club's Onshape model (images/bridge.glb), loaded only on pages that show it.
+//   data-bridge3d="float"  turns and drifts as the page scrolls, leaning toward the cursor
+//   data-bridge3d="orbit"  drag to spin, slow auto-rotation when idle
+const bridgeMounts = document.querySelectorAll('[data-bridge3d]');
+if (bridgeMounts.length) {
+  const loadScript = (src) => new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = src; s.onload = resolve; s.onerror = reject;
+    document.head.appendChild(s);
+  });
+  loadScript('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js')
+    .then(() => loadScript('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js'))
+    .then(() => new THREE.GLTFLoader().loadAsync('images/bridge.glb'))
+    .then((gltf) => bridgeMounts.forEach((mount) => mountBridge(mount, gltf.scene.clone(true))))
+    .catch(() => { /* keep the static fallback */ });
+}
+
+function mountBridge(mount, model) {
+  const mode = mount.dataset.bridge3d;
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  mount.appendChild(renderer.domElement);
+  mount.classList.add('live');
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(30, 1, 1, 5000);
+  scene.add(new THREE.HemisphereLight(0xfff1e0, 0x1f3550, mode === 'float' ? 0.55 : 0.75));
+  const sun = new THREE.DirectionalLight(0xfff6ec, mode === 'float' ? 0.85 : 0.8);
+  sun.position.set(220, 400, 300);
+  scene.add(sun);
+  const rim = new THREE.DirectionalLight(0xff6a2b, mode === 'float' ? 0.9 : 0.35);
+  rim.position.set(-300, 120, -260);
+  scene.add(rim);
+
+  // Plywood material plus crisp dark edges so it reads like a CAD model
+  const ply = new THREE.MeshStandardMaterial({ color: 0xa8683a, roughness: 0.75, metalness: 0 });
+  const edgeMat = new THREE.LineBasicMaterial({ color: mode === 'float' ? 0x2a1a0e : 0x3a2414, transparent: true, opacity: 0.55 });
+  model.traverse((o) => {
+    if (!o.isMesh) return;
+    o.material = ply;
+    o.add(new THREE.LineSegments(new THREE.EdgesGeometry(o.geometry, 25), edgeMat));
+  });
+
+  // CAD is Z-up in millimetres; stand it up and centre it
+  const pivot = new THREE.Group();
+  model.rotation.x = -Math.PI / 2;
+  pivot.add(model);
+  const box = new THREE.Box3().setFromObject(pivot);
+  model.position.sub(box.getCenter(new THREE.Vector3()));
+  scene.add(pivot);
+  const radius = box.getSize(new THREE.Vector3()).length() / 2;
+
+  function resize() {
+    const w = mount.clientWidth, h = mount.clientHeight || w * 0.75;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.position.set(0, radius * 0.55, radius * (mode === 'float' ? 4.4 : 4.8) / Math.min(camera.aspect, 1.4));
+    camera.lookAt(0, 0, 0);
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  let spin = -0.6, tilt = 0.18, dragging = false, lastX = 0, idle = 0;
+  const mouse = { x: 0, y: 0 };
+
+  if (mode === 'orbit') {
+    mount.addEventListener('pointerdown', (e) => { dragging = true; lastX = e.clientX; mount.setPointerCapture(e.pointerId); });
+    mount.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      spin += (e.clientX - lastX) * 0.01; lastX = e.clientX; idle = 0;
+    });
+    const stop = () => { dragging = false; };
+    mount.addEventListener('pointerup', stop);
+    mount.addEventListener('pointercancel', stop);
+  } else {
+    window.addEventListener('pointermove', (e) => {
+      mouse.x = e.clientX / window.innerWidth - 0.5;
+      mouse.y = e.clientY / window.innerHeight - 0.5;
+    }, { passive: true });
+  }
+
+  let visible = true;
+  new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; }).observe(mount);
+
+  let last = performance.now(), t = 0, curRotY = spin, curRotX = tilt, curY = 0;
+  function frame(now) {
+    requestAnimationFrame(frame);
+    const dt = Math.min((now - last) / 1000, 0.05); last = now;
+    if (!visible) return;
+    t += dt;
+    let rotY, rotX, posY = 0;
+    if (mode === 'float') {
+      // Scroll through the header: the bridge turns about half a revolution and drifts down
+      const hero = mount.closest('.hero') || document.body;
+      const p = Math.min(Math.max(window.scrollY / Math.max(hero.offsetHeight, 1), 0), 1.2);
+      rotY = -0.75 + p * Math.PI * 0.9 + mouse.x * 0.35 + (reduceMotion ? 0 : Math.sin(t * 0.4) * 0.06);
+      rotX = 0.22 - p * 0.18 + mouse.y * 0.12;
+      posY = -p * radius * 0.35 + (reduceMotion ? 0 : Math.sin(t * 0.8) * radius * 0.015);
+    } else {
+      idle += dt;
+      if (!dragging && idle > 1.5 && !reduceMotion) spin += dt * 0.35;
+      rotY = spin; rotX = tilt;
+    }
+    curRotY += (rotY - curRotY) * Math.min(dt * 6, 1);
+    curRotX += (rotX - curRotX) * Math.min(dt * 6, 1);
+    curY += (posY - curY) * Math.min(dt * 6, 1);
+    pivot.rotation.set(curRotX, curRotY, 0);
+    pivot.position.y = curY;
+    renderer.render(scene, camera);
+  }
+  requestAnimationFrame(frame);
+}

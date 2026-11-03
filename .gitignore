@@ -13,3 +13,9 @@
 /*.mp4
 /*.PNG
 /*.png
+
+# CAD source files
+/*.step
+/*.stp
+/*.STEP
+/*.STP
