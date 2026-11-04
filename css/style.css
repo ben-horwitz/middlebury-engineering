@@ -559,3 +559,12 @@ main > section.marquee::before { display: block; }
 .photo-stack { display: grid; gap: 18px; }
 .photo-stack > img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center 38%; border-radius: 4px; box-shadow: 22px 22px 0 -2px var(--ink); }
 @media (max-width: 900px) { .photo-stack > img { box-shadow: 12px 12px 0 -2px var(--ink); } }
+.history-photos figure { margin: 0; }
+.history-photos img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 4px; display: block; }
+.history-photos figure:first-child img { box-shadow: 22px 22px 0 -2px var(--accent); }
+.history-photos figure:last-child img { object-position: center 40%; box-shadow: 22px 22px 0 -2px var(--ink); }
+.history-photos figcaption {
+  font-family: var(--mono); font-size: .74rem; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted); margin-top: 30px;
+}
+@media (max-width: 900px) { .history-photos figure img { box-shadow: 12px 12px 0 -2px var(--accent) !important; } .history-photos figcaption { margin-top: 20px; } }
